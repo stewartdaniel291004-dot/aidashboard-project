@@ -5,25 +5,85 @@ import {
   ReactCompareSlider,
   ReactCompareSliderImage,
 } from "react-compare-slider";
-import { HiOutlineShare } from "react-icons/hi";
+import { HiOutlineShare, HiArrowRight } from "react-icons/hi";
+import { HiOutlineUsers, HiOutlineSparkles, HiOutlineArchiveBox, HiOutlineCodeBracket, HiOutlineGlobeAlt, HiOutlineUserPlus, HiOutlineRocketLaunch } from "react-icons/hi2";
 import Header from "../../common/parts/Header";
 import Footer from "../../common/parts/Footer";
 import toast from "react-hot-toast";
 import { HashLink } from "react-router-hash-link";
+import { SaraAILink } from "../../common/links";
 import AOS from "aos";
-import "aos/dist/aos.css"; // You can also use <link> for styles
-// ..
-AOS.init();
+import "aos/dist/aos.css";
+
+AOS.init({ once: true, duration: 800 });
+
+const steps = [
+  {
+    icon: <HiOutlineUserPlus />,
+    title: "Create your free account",
+    text: "Sign in with Google, GitHub or Twitter in seconds — no credit card needed.",
+  },
+  {
+    icon: <HiOutlineSparkles />,
+    title: "Generate your Spaces",
+    text: "Let Sara AI build a learning space for any topic, or start from a blank canvas.",
+  },
+  {
+    icon: <HiOutlineRocketLaunch />,
+    title: "Learn by building",
+    text: "Write code, preview live, take notes and track progress — all in one place.",
+  },
+];
+
+const features = [
+  {
+    icon: <HiOutlineCodeBracket />,
+    title: "CodeSpace",
+    text: "A focused coding environment with integrated compilers and real-time output.",
+    href: "/need-spark#codespace",
+  },
+  {
+    icon: <HiOutlineGlobeAlt />,
+    title: "WebSpace",
+    text: "Build responsive websites from templates with instant live previews.",
+    href: "/need-spark#webspace",
+  },
+  {
+    icon: <HiOutlineSparkles />,
+    title: "AI Space Generation",
+    text: "Turn any topic into custom lessons and starter code with one prompt.",
+    href: "/need-spark#Sara",
+  },
+  {
+    icon: <HiOutlineUsers />,
+    title: "Collaboration",
+    text: "Share spaces in Editor or Viewer mode and build together in real time.",
+    href: "/need-spark#sharedspace",
+  },
+  {
+    icon: <HiOutlineArchiveBox />,
+    title: "Backup & Restore",
+    text: "Space Trash keeps deleted work safe so you can recover it any time.",
+    href: "/need-spark#spacetrash",
+  },
+  {
+    icon: <HiOutlineRocketLaunch />,
+    title: "Space Notes",
+    text: "Capture insights next to your code and review them when it matters.",
+    href: "/need-spark#spacenotes",
+  },
+];
+
 function Home() {
   const { user } = useUserAuth();
 
   const HandleShare = async () => {
     try {
       if (navigator.share) {
-        await navigator.share({
-          title: "Webweave",
-          url: window.origin,
-        });
+        await navigator.share({ title: "WebWeave", url: window.origin });
+      } else {
+        await navigator.clipboard.writeText(window.origin);
+        toast.success("Link copied to clipboard");
       }
     } catch (err) {
       toast.error("Unable to share.");
@@ -31,507 +91,236 @@ function Home() {
   };
 
   return (
-    <div className="h-screen pt-20 ">
+    <div className="min-h-screen overflow-x-hidden bg-weave-soft">
       <Header />
-      <section class="text-white body-font bg-gradient-to-br from-[#2193b0] via-[#6dd5ed] to-[#093676]">
-        <div
-          data-aos="fade-right"
-          data-aos-duration="3000"
-          class="container md:h-[80vh] mx-auto home22-intro overflow-hidden relative flex px-5 md:px-12 py-12 md:flex-row flex-col-reverse gap-5 md:gap-0 items-center"
-        >
-          <div class="lg:flex-grow md:w-1/2 lg:pr-16 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 class="title-font sm:text-4xl md:text-6xl text-2xl mb-6 font-bold">
-              Learn programming Interactively
-              <br class="hidden lg:inline-block" />
-              <span className="text-2xl font-medium sm:text-3xl md:text-4xl">
-                with AI-Powered Dashboards
+
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-weave pt-28 text-white md:pt-32">
+        <div className="ww-blob left-[-6rem] top-24 h-80 w-80 bg-weave-pink opacity-40 animate-float" />
+        <div className="ww-blob right-[-4rem] top-10 h-96 w-96 bg-weave-cyan opacity-40" />
+        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.12)_1px,transparent_1px)] [background-size:22px_22px]" />
+
+        <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-12 px-5 pb-24 md:px-8 lg:flex-row lg:pb-32">
+          <div data-aos="fade-up" className="flex w-full flex-col items-center text-center lg:w-1/2 lg:items-start lg:text-left">
+            <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest backdrop-blur">
+              <span className="size-2 rounded-full bg-weave-cyan" /> AI-powered learning
+            </span>
+            <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+              Learn to code by
+              <span className="block bg-gradient-to-r from-white via-brand-100 to-weave-cyan bg-clip-text text-transparent">
+                weaving ideas into apps
               </span>
             </h1>
-            <p class="mb-10 sm:text-lg md:text-xl text-justify leading-wider">
-              CodeSpace offers real-time previews, Space Trash for code
-              management, and Sara AI for assistance. WebSpace provides
-              responsive templates, while Space Notes helps capture insights,
-              all while delivering <strong>Skill as a Service</strong>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
+              WebWeave brings CodeSpace, WebSpace, Space Notes and Sara AI
+              together in one dashboard — so you can learn, build and share
+              with real-time previews and an AI assistant by your side.
             </p>
-            <div className="flex items-center gap-3 ">
-              {user ? (
-                <Link
-                  to="/dashboard"
-                  class="inline-flex text-black bg-white border-2 border-dashed border-black  py-2 px-6 focus:outline-none rounded text-lg drop-shadow-md "
-                >
-                  Access Your Space
-                </Link>
-              ) : (
-                <Link
-                  to="/auth"
-                  class="inline-flex text-white  border-2 border-white py-2.5 px-6 focus:outline-none rounded-full text-lg drop-shadow-md"
-                >
-                  Get Started Now
-                </Link>
-              )}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+              <Link
+                to={user ? "/dashboard" : "/auth"}
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-brand-700 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl active:scale-95"
+              >
+                {user ? "Open your Space" : "Get started free"} <HiArrowRight />
+              </Link>
+              <HashLink to="/need-spark" className="btn-ghost">
+                Explore features
+              </HashLink>
               <button
                 onClick={HandleShare}
-                className="flex items-center justify-center w-12 h-12 text-white border-2 border-white rounded-full focus:outline-none drop-shadow-md"
+                aria-label="Share WebWeave"
+                className="flex size-12 items-center justify-center rounded-full border border-white/40 bg-white/10 text-lg backdrop-blur transition hover:bg-white/20 active:scale-95"
               >
                 <HiOutlineShare />
               </button>
             </div>
+            <div className="mt-10 grid w-full max-w-md grid-cols-3 gap-3">
+              {[
+                ["2", "Workspaces"],
+                ["24/7", "AI assistance"],
+                ["Free", "To start"],
+              ].map(([v, l]) => (
+                <div key={l} className="rounded-2xl glass-dark px-3 py-3 text-center">
+                  <div className="text-xl font-bold">{v}</div>
+                  <div className="text-xs text-white/70">{l}</div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div
-            data-aos="fade-left"
-            data-aos-duration="3000"
-            class="lg:max-w-xl lg:block lg:w-full md:w-1/2 w-5/6 "
-          >
-            <ReactCompareSlider
-              position={75}
-              changePositionOnHover={true}
-              buttonStyle={{
-                display: "none",
-              }}
-              itemOne={
-                <ReactCompareSliderImage
-                  src="https://ik.imagekit.io/vituepzjm/codespace2.png?updatedAt=1734705428800"
-                  alt="Image one"
-                />
-              }
-              itemTwo={
-                <ReactCompareSliderImage
-                  src="https://ik.imagekit.io/vituepzjm/webspace.png?updatedAt=1734704706719"
-                  alt="Image two"
-                />
-              }
-              style={{ width: "100%", height: "100%", borderRadius: "20px" }}
-            />
+
+          <div data-aos="fade-up" data-aos-delay="150" className="w-full lg:w-1/2">
+            <div className="rounded-3xl glass-dark p-2 shadow-2xl md:p-3">
+              <div className="mb-2 flex items-center gap-1.5 px-2 pt-1">
+                <span className="size-2.5 rounded-full bg-white/40" />
+                <span className="size-2.5 rounded-full bg-white/40" />
+                <span className="size-2.5 rounded-full bg-white/40" />
+                <span className="ml-3 text-xs text-white/60">CodeSpace ⇄ WebSpace</span>
+              </div>
+              <ReactCompareSlider
+                position={70}
+                changePositionOnHover={true}
+                itemOne={
+                  <ReactCompareSliderImage
+                    src="https://ik.imagekit.io/vituepzjm/codespace2.png?updatedAt=1734705428800"
+                    alt="CodeSpace preview"
+                  />
+                }
+                itemTwo={
+                  <ReactCompareSliderImage
+                    src="https://ik.imagekit.io/vituepzjm/webspace.png?updatedAt=1734704706719"
+                    alt="WebSpace preview"
+                  />
+                }
+                style={{ width: "100%", borderRadius: "18px" }}
+              />
+            </div>
           </div>
         </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-[#f8f7ff]" />
       </section>
-      {/* <section class="text-sky-600 body-font bg-white">
-        <div class="container mx-auto flex lg:px-24 px-5 pt-24 pb-12 md:py-24 md:flex-row flex-col items-center">
-          <div class="lg:max-w-xl lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-            <img
-              data-aos="fade-right"
-              data-aos-duration="3000"
-              class="object-cover object-center rounded"
-              alt="hero"
-              src="https://ik.imagekit.io/vituepzjm/10.png"
-            />
-          </div>
-          <div
-            data-aos="fade-left"
-            data-aos-duration="3000"
-            class="lg:flex-grow md:w-1/2 lg:pl-32 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center"
-          >
-            <h1 className="px-5 py-2 mb-5 text-sm font-bold uppercase border-2 border-dashed rounded-md text-sky-600 border-sky-600 ">
-              CODE SPACE
-            </h1>
-            <h1 class="title-font sm:text-5xl text-3xl mb-4 break-words font-bold text-transparent bg-gradient-to-br from-[#093676] via-[#03cefb] to-[#093676] bg-clip-text">
-              Start Coding Simply
-              <br class="hidden lg:inline-block" /> with CodeSpace
-            </h1>
-            <p class="mb-8 font-medium leading-relaxed w-[80%]">
-              CodeSpace is a dynamic and user-friendly platform designed to
-              enhance your coding experience, providing a seamless environment
-              for learning and developing projects with real-time feedback and
-              intuitive tools.
-            </p>
-            <div className="flex items-center gap-3">
-              <Link
-                to="/dashboard/space/new"
-                class="flex justify-center items-center bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-700 hover:to-sky-800 drop-shadow-md ps-5 pe-3 py-3 rounded-md gap-2"
-              >
-                <span class="text-white">Start Creating</span>
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  class="w-4 h-4 ml-1 text-white"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </Link>
-              <HashLink
-                to="/need-spark#codespace"
-                class="hover:underline hover:text-black cursor-pointer underline-offset-2 ps-5 pe-3 py-3 rounded-md gap-2"
-              >
-                more about this
-              </HashLink>
+
+      {/* Steps */}
+      <section className="relative mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div data-aos="fade-up" className="relative">
+            <div className="ww-blob -left-10 -top-10 h-56 w-56 bg-brand-400 opacity-30" />
+            <div className="relative overflow-hidden rounded-3xl glass p-2">
+              <img
+                alt="Getting started with WebWeave"
+                className="h-full w-full rounded-2xl object-cover"
+                src="https://ik.imagekit.io/vituepzjm/WhatsApp%20Image%202024-12-25%20at%2010.14.29%20PM.jpeg?updatedAt=1735403330914"
+              />
+              <span className="absolute right-5 top-5 rounded-full glass px-3 py-1 text-xs font-semibold text-brand-700">
+                3 steps to start
+              </span>
             </div>
           </div>
-        </div>
-      </section> */}
-      <hr className="mx-12" />
-      {/* <section class="text-sky-600 body-font bg-white">
-        <div
-          data-aos="fade-right"
-          data-aos-duration="3000"
-          class="container mx-auto flex lg:px-20 px-5 gap-12 md:gap-0 py-12 md:py-24 md:flex-row flex-col-reverse items-center"
-        >
-          <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 className="px-5 py-2 mb-5 text-sm font-bold uppercase border-2 border-dashed rounded-md text-sky-600 border-sky-600">
-              WEB SPACE
-            </h1>
-            <h1 class="title-font sm:text-5xl text-3xl capitalize mb-4 font-bold text-transparent bg-gradient-to-br from-[#093676] via-[#03cefb] to-[#093676] bg-clip-text">
-              Build Your Topic Website
-              <br class="hidden lg:inline-block" />
-              with WebSpace
-            </h1>
-            <p class="mb-8 leading-relaxed w-[80%]">
-              WebSpace is an intuitive platform for building responsive
-              websites, offering easy-to-use templates, live previews, and
-              seamless collaboration, allowing users to create, manage, and
-              share web projects effortlessly.
-            </p>
-            <div className="flex items-center gap-3">
-              <Link
-                to="/dashboard/webspace/new"
-                class="flex justify-center items-center bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-700 hover:to-sky-800 drop-shadow-md ps-5 pe-3 py-3 rounded-md gap-2"
-              >
-                <span class="text-white">Start Creating</span>
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  class="w-4 h-4 ml-1 text-white"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </Link>
-              <HashLink
-                to="/need-spark#webspace"
-                className="gap-2 py-3 rounded-md cursor-pointer hover:underline hover:text-black underline-offset-2 ps-5 pe-3"
-              >
-                more about this
-              </HashLink>
-            </div>
-          </div>
-          <div class=" lg:max-w-xl lg:w-full md:w-1/2 w-5/6">
-            <img
-              data-aos="fade-left"
-              data-aos-duration="3000"
-              class="object-cover lg:-ml-24 object-center rounded"
-              alt="hero"
-              src="https://ik.imagekit.io/vituepzjm/webspacesample3.png"
-            />
-          </div>
-        </div>
-      </section> */}
-      <hr className="mx-12" />
-      <section class="text-sky-600 body-font bg-white">
-        <div
-          data-aos="fade-left"
-          data-aos-duration="3000"
-          class="container px-5 md:px-12 py-24 mx-auto flex flex-wrap"
-        >
-          <div class="lg:w-1/2 w-full border-4 border-white outline-2 outline-black outline mb-10 relative lg:mb-0 rounded-lg overflow-hidden">
-            <img
-              alt="feature"
-              data-aos="fade-right"
-              data-aos-duration="3000"
-              class="object-cover object-center h-full w-full"
-              src="https://ik.imagekit.io/vituepzjm/WhatsApp%20Image%202024-12-25%20at%2010.14.29%20PM.jpeg?updatedAt=1735403330914"
-            />
-            <h1 className="absolute px-3 py-1 text-sm text-white rounded-md top-3 right-3 bg-black/60">
-              STEPS TO START
-            </h1>
-          </div>
-          <div class="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
-            <div class="flex flex-col mb-10 lg:items-start items-center">
-              <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-700 hover:to-sky-800 text-white mb-5">
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  class="w-6 h-6"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </div>
-              <div class="flex-grow">
-                <h2 class="text-transparent bg-gradient-to-br from-[#093676] via-[#03cefb] to-[#093676] bg-clip-text font-bold text-lg title-font  mb-1">
-                  Account Creation
-                </h2>
-                <p class="leading-relaxed text-base">
-                  Register your free Webweave Learning account to leavarage
-                  your inner potential in coding.
-                </p>
-              </div>
-            </div>
-            <div class="flex flex-col mb-10 lg:items-start items-center">
-              <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-700 hover:to-sky-800 text-white mb-5">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  stroke-width="0"
-                  class="w-6 h-6"
-                  viewBox="0 0 256 256"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M229.5,113,166.06,89.94,143,26.5a16,16,0,0,0-30,0L89.94,89.94,26.5,113a16,16,0,0,0,0,30l63.44,23.07L113,229.5a16,16,0,0,0,30,0l23.07-63.44L229.5,143a16,16,0,0,0,0-30ZM157.08,152.3a8,8,0,0,0-4.78,4.78L128,223.9l-24.3-66.82a8,8,0,0,0-4.78-4.78L32.1,128l66.82-24.3a8,8,0,0,0,4.78-4.78L128,32.1l24.3,66.82a8,8,0,0,0,4.78,4.78L223.9,128Z"></path>
-                </svg>
-              </div>
-              <div class="flex-grow">
-                <h2 class="text-transparent bg-gradient-to-br from-[#093676] via-[#03cefb] to-[#093676] bg-clip-text font-bold text-lg title-font mb-1">
-                  Create your own Spaces
-                </h2>
-                <p class="leading-relaxed text-base">
-                  Generate the Learning Dashboards for your lagging topics with
-                  the help of our AI model Sara AI or create with blank space.
-                </p>
-              </div>
-            </div>
-            <div class="flex flex-col mb-10 lg:items-start items-center">
-              <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-700 hover:to-sky-800 text-white mb-5">
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  class="w-6 h-6"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                </svg>
-              </div>
-              <div class="flex-grow">
-                <h2 class="text-transparent bg-gradient-to-br from-[#093676] via-[#03cefb] to-[#093676] bg-clip-text font-bold text-lg title-font mb-1">
-                  Start Learning and Innovating
-                </h2>
-                <p class="leading-relaxed text-base">
-                  Learn complex topics effectively using an adaptive learning
-                  approach featuring hands-on coding, integrated compilers, and
-                  personalized learning paths.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <hr className="mx-12" />
-      <section class="text-black body-font bg-gradient-to-br from-[#2193b0] via-[#6dd5ed] to-[#093676]">
-        <div class="container px-5 md:px-12 py-24 mx-auto">
-          <div class="flex flex-col text-center w-full mb-12">
-            <h2 class="sm:text-3xl text-2xl font-medium title-font text-white mb-1">
-              We Offer the Best Features
+          <div>
+            <span className="eyebrow">How it works</span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              From sign-up to shipping in <span className="text-weave">minutes</span>
             </h2>
-            <h1 class="text-xs text-white tracking-widest font-medium title-font">
-              From Us For Your Convenience
-            </h1>
+            <div className="mt-8 space-y-4">
+              {steps.map((s, i) => (
+                <div
+                  key={s.title}
+                  data-aos="fade-up"
+                  data-aos-delay={i * 100}
+                  className="group flex gap-4 rounded-2xl glass p-5 transition hover:-translate-y-0.5 hover:shadow-glow"
+                >
+                  <div className="flex size-12 flex-shrink-0 items-center justify-center rounded-xl bg-weave text-2xl text-white shadow-glow">
+                    {s.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">
+                      <span className="mr-2 text-brand-500">0{i + 1}</span>
+                      {s.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-gray-600">{s.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div class="flex flex-wrap -m-4">
-            <div class="p-4 md:w-1/3">
-              <div data-aos="zoom-in-up" data-aos-duration="3000" class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                <div class="flex items-center mb-3">
-                  <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-black text-white flex-shrink-0">
-                    <svg
-                      class="svg-inline--fa fa-users size-4"
-                      aria-hidden="true"
-                      focusable="false"
-                      data-prefix="fas"
-                      data-icon="users"
-                      role="img"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 640 512"
-                      data-fa-i2svg=""
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M144 160c-44.2 0-80-35.8-80-80S99.8 0 144 0s80 35.8 80 80s-35.8 80-80 80zm368 0c-44.2 0-80-35.8-80-80s35.8-80 80-80s80 35.8 80 80s-35.8 80-80 80zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM416 224c0 53-43 96-96 96s-96-43-96-96s43-96 96-96s96 43 96 96zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <h2 class="text-gray-900 text-lg title-font font-medium">
-                    Collaboration
-                  </h2>
-                </div>
-                <div class="flex-grow">
-                  <p class="leading-relaxed text-base">
-                    Collaborate seamlessly in real-time, sharing and working on
-                    projects together effortlessly.
-                  </p>
-                  <HashLink
-                    to="/need-spark#sharedspace"
-                    class="mt-3 text-black inline-flex items-center"
-                  >
-                    Learn More
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      class="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                  </HashLink>
-                </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="relative mx-auto max-w-7xl px-5 pb-20 md:px-8 md:pb-28">
+        <div className="mx-auto mb-12 max-w-2xl text-center">
+          <span className="eyebrow">Features</span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            Everything you need to <span className="text-weave">learn and build</span>
+          </h2>
+          <p className="mt-3 text-gray-600">Thoughtfully designed tools that work together, not against you.</p>
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((f, i) => (
+            <HashLink
+              key={f.title}
+              to={f.href}
+              data-aos="fade-up"
+              data-aos-delay={(i % 3) * 100}
+              className="group relative flex flex-col rounded-3xl glass p-6 transition duration-300 hover:-translate-y-1 hover:shadow-glow"
+            >
+              <div className="mb-5 flex size-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl text-brand-600 transition group-hover:bg-weave group-hover:text-white">
+                {f.icon}
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900">{f.title}</h3>
+              <p className="mt-2 flex-grow text-sm leading-relaxed text-gray-600">{f.text}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-600">
+                Learn more <HiArrowRight className="transition group-hover:translate-x-1" />
+              </span>
+            </HashLink>
+          ))}
+        </div>
+      </section>
+
+      {/* Sara AI */}
+      <section id="sara-ai" className="mx-auto max-w-7xl px-5 pb-20 md:px-8 md:pb-28">
+        <div data-aos="fade-up" className="relative overflow-hidden rounded-[2rem] bg-weave p-8 text-white md:p-14">
+          <div className="ww-blob -right-10 -top-10 h-72 w-72 bg-weave-cyan opacity-40" />
+          <div className="relative grid items-center gap-10 md:grid-cols-2">
+            <div>
+              <span className="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest backdrop-blur">
+                Meet Sara AI
+              </span>
+              <h2 className="mt-4 text-3xl font-bold sm:text-4xl">Your always-on coding companion</h2>
+              <p className="mt-4 text-white/80">
+                Sara AI is built into every CodeSpace and WebSpace. Ask questions,
+                debug errors, get explanations and generate starter code — right
+                where you work.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href={SaraAILink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-brand-700 shadow-lg transition hover:-translate-y-0.5 active:scale-95"
+                >
+                  Try Sara AI <HiArrowRight />
+                </a>
+                <HashLink to="/need-spark#Sara" className="btn-ghost">How it works</HashLink>
               </div>
             </div>
-            <div class="p-4 md:w-1/3">
-              <div data-aos="zoom-in-up" data-aos-duration="3000" class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                <div class="flex items-center mb-3">
-                  <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-black text-white flex-shrink-0">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 24 24"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M20.4668 8.69379L20.7134 8.12811C21.1529 7.11947 21.9445 6.31641 22.9323 5.87708L23.6919 5.53922C24.1027 5.35653 24.1027 4.75881 23.6919 4.57612L22.9748 4.25714C21.9616 3.80651 21.1558 2.97373 20.7238 1.93083L20.4706 1.31953C20.2942 0.893489 19.7058 0.893489 19.5293 1.31953L19.2761 1.93083C18.8442 2.97373 18.0384 3.80651 17.0252 4.25714L16.308 4.57612C15.8973 4.75881 15.8973 5.35653 16.308 5.53922L17.0677 5.87708C18.0555 6.31641 18.8471 7.11947 19.2866 8.12811L19.5331 8.69379C19.7136 9.10792 20.2864 9.10792 20.4668 8.69379ZM5.79993 16H7.95399L8.55399 14.5H11.4459L12.0459 16H14.1999L10.9999 8H8.99993L5.79993 16ZM9.99993 10.8852L10.6459 12.5H9.35399L9.99993 10.8852ZM15 16V8H17V16H15ZM3 3C2.44772 3 2 3.44772 2 4V20C2 20.5523 2.44772 21 3 21H21C21.5523 21 22 20.5523 22 20V11H20V19H4V5H14V3H3Z"></path>
-                    </svg>
-                  </div>
-                  <h2 class="text-gray-900 text-lg title-font font-medium">
-                    Ai Space Generation
-                  </h2>
-                </div>
-                <div class="flex-grow">
-                  <p class="leading-relaxed text-base">
-                    Create customized content and code on any topic effortlessly
-                    with AI assistance.{" "}
-                  </p>
-                  <HashLink
-                    to="/need-spark#Sara"
-                    class="mt-3 text-black inline-flex items-center"
-                  >
-                    Learn More
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      class="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                  </HashLink>
+            <div className="rounded-3xl glass-dark p-5">
+              <div className="flex items-center gap-3">
+                <img src="https://ik.imagekit.io/vituepzjm/Sara.png" alt="Sara AI" className="size-10 rounded-full bg-white/80 p-1" />
+                <div>
+                  <div className="font-semibold">Sara AI</div>
+                  <div className="text-xs text-white/60">Online · ready to help</div>
                 </div>
               </div>
-            </div>
-            <div class="p-4 md:w-1/3">
-              <div  data-aos="zoom-in-up" data-aos-duration="3000" class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                <div class="flex items-center mb-3">
-                  <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-black text-white flex-shrink-0">
-                    <svg
-                      class="svg-inline--fa fa-dropbox size-4"
-                      aria-hidden="true"
-                      focusable="false"
-                      data-prefix="fab"
-                      data-icon="dropbox"
-                      role="img"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 528 512"
-                      data-fa-i2svg=""
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M264.4 116.3l-132 84.3 132 84.3-132 84.3L0 284.1l132.3-84.3L0 116.3 132.3 32l132.1 84.3zM131.6 395.7l132-84.3 132 84.3-132 84.3-132-84.3zm132.8-111.6l132-84.3-132-83.6L395.7 32 528 116.3l-132.3 84.3L528 284.8l-132.3 84.3-131.3-85z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <h2 class="text-gray-900 text-lg title-font font-medium">
-                    Backup and Restore
-                  </h2>
+              <div className="mt-5 space-y-3 text-sm">
+                <div className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-white/90 px-4 py-2 text-gray-800">
+                  Why does my flexbox not center vertically?
                 </div>
-                <div class="flex-grow">
-                  <p class="leading-relaxed text-base">
-                    Easily delete, back up, and recover your code with Trash
-                    Backup and Restore.
-                  </p>
-                  <HashLink
-                    to="/need-spark#spacetrash"
-                    class="mt-3 text-black inline-flex items-center"
-                  >
-                    Learn More
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      class="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                  </HashLink>
+                <div className="w-fit max-w-[90%] rounded-2xl rounded-bl-md bg-white/15 px-4 py-2">
+                  Add <code className="rounded bg-black/30 px-1">align-items: center</code> and give the
+                  container a height — e.g. <code className="rounded bg-black/30 px-1">min-height: 100vh</code>.
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="text-sky-600 bg-white">
-        <div  data-aos="zoom-in-down"
-          data-aos-duration="3000"  class="container px-5 py-24 mx-auto">
-          <div class="flex flex-col text-center items-center justify-center w-full mb-12">
-            <h1 className="px-8 py-3 mb-5 text-sm font-bold bg-white rounded-full text-sky-600">
-              Join With Us{" "}
-            </h1>
-            <h1 class="sm:text-4xl text-2xl lg:font-semibold font-bold title-font mb-4 text-transparent bg-gradient-to-br from-[#093676] via-[#03cefb] to-[#093676] bg-clip-text break-words">
-              Try it now for an efficient and Collabrative experience!
-            </h1>
-            <p class="lg:w-2/3 mx-auto leading-relaxed lg:text-xl">
-              Unlock The future of Learning is seamless and connected.
-            </p>
-            {user ? (
-              <Link
-                to="/dashboard/home"
-                class="flex mt-10 justify-center  items-center bg-white ps-5 pe-3 py-3 rounded-md "
-              >
-                <span class="text-sky-600 font-semibold">Explore More</span>
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  class="w-4 h-4 ml-1 text-black"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </Link>
-            ) : (
-              <Link
-                to="/auth"
-                class="flex mt-10 justify-center  items-center bg-white ps-5 pe-3 py-3 rounded-md "
-              >
-                <span class="text-sky-600 font-semibold">Get Started Now</span>
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  class="w-4 h-4 ml-1 text-sky-600"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </Link>
-            )}
-          </div>
+
+      {/* CTA */}
+      <section className="mx-auto max-w-4xl px-5 pb-24 text-center md:px-8">
+        <div data-aos="zoom-in" className="rounded-[2rem] glass px-6 py-14 md:px-14">
+          <span className="eyebrow">Join WebWeave</span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            Ready for a smarter, <span className="text-weave">collaborative</span> way to learn?
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-gray-600">
+            Create your first Space today and see how fast ideas turn into working code.
+          </p>
+          <Link to={user ? "/dashboard/home" : "/auth"} className="btn-weave mt-8">
+            {user ? "Go to dashboard" : "Get started now"} <HiArrowRight />
+          </Link>
         </div>
       </section>
+
       <Footer />
     </div>
   );

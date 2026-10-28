@@ -15,8 +15,41 @@ module.exports = {
         ...indigo,
         main: "#1a1a1a",
         org: "#ff5001",
+        // WebWeave brand palette
+        brand: {
+          50: "#f3f1ff",
+          100: "#e9e5ff",
+          200: "#d5ceff",
+          300: "#b6a6ff",
+          400: "#9175ff",
+          500: "#7047fb",
+          600: "#5f2bf0",
+          700: "#4f1fd6",
+          800: "#421bb0",
+          900: "#37198f",
+          950: "#210d61",
+        },
+        weave: {
+          ink: "#0d0b26",
+          cyan: "#22d3ee",
+          pink: "#f472b6",
+        },
+      },
+      backgroundImage: {
+        weave:
+          "linear-gradient(135deg, #1e1458 0%, #4f1fd6 40%, #7047fb 70%, #22d3ee 100%)",
+        "weave-soft":
+          "radial-gradient(60rem 30rem at 10% -10%, rgba(112,71,251,0.18), transparent 60%), radial-gradient(50rem 30rem at 110% 10%, rgba(34,211,238,0.16), transparent 60%), linear-gradient(180deg, #f8f7ff 0%, #ffffff 100%)",
+      },
+      boxShadow: {
+        glass: "0 8px 32px rgba(31, 20, 88, 0.12), inset 0 1px 0 rgba(255,255,255,0.4)",
+        glow: "0 10px 40px -10px rgba(112, 71, 251, 0.55)",
       },
       keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
         bounce: {
           from: { transform: "translateY(-25%)" },
           via: { transform: "translateY(0)" },
@@ -101,6 +134,7 @@ module.exports = {
       },
     },
     animation: {
+      float: "float 6s ease-in-out infinite",
       slideDownAndFade: "slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)",
       slideUp: "slideUp 300ms ease",
       slideDown: "slideDown 300ms ease",

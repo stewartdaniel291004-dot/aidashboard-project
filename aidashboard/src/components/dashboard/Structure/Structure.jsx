@@ -106,7 +106,7 @@ function Structure() {
                                             />
                                             <div>
                                                 <h1 className="text-base leading-[1.2rem] text-start line-clamp-1 overflow-hidden font-medium text-black"> <span className="hidden md:inline-flex">Create</span> CodeSpace with AI ✨</h1>
-                                                <p className="text-sm  leading-[1.2rem] text-start ms-1 line-clamp-1 overflow-hidden text-black/70">create your customised dahboard with Sara AI</p>
+                                                <p className="text-sm  leading-[1.2rem] text-start ms-1 line-clamp-1 overflow-hidden text-black/70">create your customised dashboard with Sara AI</p>
                                             </div>
                                         </Link>
                                         {codespacelist.map((item, index) => (
@@ -137,7 +137,7 @@ function Structure() {
                                             />
                                             <div>
                                                 <h1 className="text-base leading-[1.2rem] text-start line-clamp-1 overflow-hidden font-medium text-black"> <span className="hidden md:inline-flex">Create</span> WebSpace with AI ✨</h1>
-                                                <p className="text-sm  leading-[1.2rem] text-start ms-1 line-clamp-1 overflow-hidden text-black/70">create your customised dahboard with Sara AI</p>
+                                                <p className="text-sm  leading-[1.2rem] text-start ms-1 line-clamp-1 overflow-hidden text-black/70">create your customised dashboard with Sara AI</p>
                                             </div>
                                         </Link>
                                         {webspacelist.map((item, index) => (

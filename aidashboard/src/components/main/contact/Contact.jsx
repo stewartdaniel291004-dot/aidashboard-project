@@ -1,100 +1,80 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useUserAuth } from "../../context/UserAuthContext";
 import Header from "../../../common/parts/Header";
 import Footer from "../../../common/parts/Footer";
+import { HiOutlineEnvelope, HiOutlineMapPin, HiOutlineSparkles } from "react-icons/hi2";
+import { AdminEmail, SaraAILink } from "../../../common/links";
 
 function Contact() {
-  const { user } = useUserAuth();
+  const info = [
+    { icon: <HiOutlineEnvelope />, label: "Email", value: AdminEmail, href: `mailto:${AdminEmail}` },
+    { icon: <HiOutlineMapPin />, label: "Location", value: "Thanjavur, Tamil Nadu, India" },
+    { icon: <HiOutlineSparkles />, label: "Need quick help?", value: "Ask Sara AI", href: SaraAILink },
+  ];
 
   return (
-    <div className="">
+    <div className="min-h-screen overflow-x-hidden bg-weave-soft">
       <Header />
-      <section id="contact" class="text-sky-600 body-font relative">
-        <div class="container px-10 md:px-20 py-20 mx-auto flex sm:flex-nowrap flex-wrap">
-          <div class="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10  items-end justify-start relative hidden md:flex">
-            <iframe
-              width="100%"
-              height="100%"
-              class="absolute focus:outline-none inset-0"
-              frameborder="0"
-              title="map"
-              marginheight="0"
-              marginwidth="0"
-              scrolling="no"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125432.38285197991!2d79.1314494!3d10.7528199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baab89cea453039%3A0xe113da9b1f632be6!2sThanjavur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1699945692037!5m2!1sen!2sin"
-            ></iframe>
+      <section id="contact" className="relative mx-auto max-w-7xl px-5 pb-20 pt-32 md:px-8">
+        <div className="ww-blob -left-20 top-20 h-72 w-72 bg-brand-400 opacity-30" />
+        <div className="relative mx-auto mb-12 max-w-2xl text-center">
+          <span className="eyebrow">Contact</span>
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            Let's <span className="text-weave">talk</span>
+          </h1>
+          <p className="mt-3 text-gray-600">
+            Questions, feedback or partnership ideas — the WebWeave team reads every message.
+          </p>
+        </div>
 
-            <div class="bg-white relative flex gap-3 flex-wrap p-6 rounded shadow-md">
-              <div class="lg:w-fit px-6">
-                <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">
-                  Website
-                </h2>
-                <a
-                  href="https://www.santechh.online/"
-                  class="mt-1 text-gray-500"
-                >
-                  SanTech
-                </a>
-              </div>
-              <div class="lg:w-fit px-6 ">
-                <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">
-                  EMAIL
-                </h2>
-                <a
-                  href="mailto:santhoshtechnologies22@gmail.com"
-                  class="text-gray-500 leading-relaxed break-all"
-                >
-                  santhoshtechnologies22@gmail.com
-                </a>
-              </div>
+        <div className="relative grid gap-6 lg:grid-cols-5">
+          <div className="flex flex-col gap-6 lg:col-span-3">
+            <div className="grid gap-4 sm:grid-cols-3">
+              {info.map((i) => {
+                const body = (
+                  <>
+                    <div className="mb-3 flex size-10 items-center justify-center rounded-xl bg-weave text-xl text-white">{i.icon}</div>
+                    <div className="text-xs font-semibold uppercase tracking-widest text-gray-500">{i.label}</div>
+                    <div className="mt-1 break-all text-sm font-medium text-gray-900">{i.value}</div>
+                  </>
+                );
+                return i.href ? (
+                  <a key={i.label} href={i.href} target={i.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="rounded-2xl glass p-5 transition hover:-translate-y-0.5 hover:shadow-glow">
+                    {body}
+                  </a>
+                ) : (
+                  <div key={i.label} className="rounded-2xl glass p-5">{body}</div>
+                );
+              })}
+            </div>
+            <div className="min-h-[280px] flex-grow overflow-hidden rounded-3xl glass p-2">
+              <iframe
+                title="WebWeave location map"
+                className="h-full min-h-[280px] w-full rounded-2xl"
+                loading="lazy"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125432.38285197991!2d79.1314494!3d10.7528199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baab89cea453039%3A0xe113da9b1f632be6!2sThanjavur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1699945692037!5m2!1sen!2sin"
+              ></iframe>
             </div>
           </div>
+
           <form
             action="https://formsubmit.co/0b4ee2cd42a0e78f61eb1715e33bb409"
             method="POST"
-            class="lg:w-1/3 md:w-1/2  flex shadow-xl p-5 md:p-0 md:shadow-none rounded-lg flex-col md:ml-auto  w-full md:py-8 mt-8 md:mt-0"
+            className="flex flex-col gap-4 rounded-3xl glass p-6 sm:p-8 lg:col-span-2"
           >
-            <h2 class="text-sky-600 text-lg mb-1 font-medium title-font">
-              Feedback for us
-            </h2>
-            <div class="relative mb-4">
-              <label for="name" class="leading-7 text-sm text-sky-900">
-                Name
-              </label>
-              <input
-                required
-                type="text"
-                id="name"
-                name="name"
-                class="w-full bg-white rounded border border-gray-300 focus:border-black focus:ring-2 focus:ring-gray-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
-            </div>
-            <div class="relative mb-4">
-              <label for="email" class="leading-7 text-sm text-sky-900">
-                Email
-              </label>
-              <input
-                required
-                type="email"
-                id="email"
-                name="email"
-                class="w-full bg-white rounded border border-gray-300 focus:border-black focus:ring-2 focus:ring-gray-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
-            </div>
-            <div class="relative mb-4">
-              <label for="message" class="leading-7 text-sm text-sky-900">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                class="w-full bg-white rounded border border-gray-300 focus:border-black focus:ring-2 focus:ring-gray-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-              ></textarea>
-            </div>
-            <button class="text-white  bg-gradient-to-r from-sky-400 to-sky-500 hover:from-sky-500 hover:to-sky-900 border-0 py-2 px-6 focus:outline-none hover:bg-black rounded text-lg">
-              Share Response
-            </button>
+            <h2 className="text-xl font-semibold text-gray-900">Send us a message</h2>
+            <label className="text-sm font-medium text-gray-700">
+              Name
+              <input required type="text" name="name" className="ww-input mt-1" />
+            </label>
+            <label className="text-sm font-medium text-gray-700">
+              Email
+              <input required type="email" name="email" className="ww-input mt-1" />
+            </label>
+            <label className="text-sm font-medium text-gray-700">
+              Message
+              <textarea required name="message" rows={5} className="ww-input mt-1 resize-none" />
+            </label>
+            <button className="btn-weave mt-2 w-full">Send message</button>
           </form>
         </div>
       </section>

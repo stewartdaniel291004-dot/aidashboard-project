@@ -1,3 +1,4 @@
+import { SaraAIChatLink } from "../../../common/links";
 import React, { useEffect, useRef, useState } from 'react'
 import ChatInput from '../webparts/ChatInput'
 import CodePlayground from '../webparts/CodePlayground'
@@ -318,7 +319,7 @@ function LoadWebSpace() {
                     <Dialog.Overlay onClick={() => { setIsAIOpen(!isAIOpen) }} className="bg-blackA6 z-[1000] data-[state=open]:left-0 left-[-50%] fixed inset-0" />
                     <Dialog.Content className="z-[10000] h-screen data-[state=open]:animate-enterFromLeft data-[state=close]:animate-exitToLeft fixed top-0 left-0 w-full max-w-[600px] bg-white focus:outline-none">
                         <div className="flex items-end justify-between p-4">
-                            <Link to="https://aiSara.vercel.app/v1" className="text-2xl font-semibold text-black ms-2">Sara AI</Link>
+                            <Link to={SaraAIChatLink} target="_blank" rel="noopener noreferrer" className="text-2xl font-semibold text-black ms-2">Sara AI</Link>
                             <div className="flex items-center gap-3">
                                 <button onClick={() => setIsAIOpen(!isAIOpen)} className="p-2 transition-all bg-gray-200 rounded-lg md:hidden active:scale-90">
                                     <GoArrowLeft />

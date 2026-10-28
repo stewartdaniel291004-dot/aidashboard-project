@@ -15,6 +15,7 @@ import { RiFullscreenExitLine } from 'react-icons/ri';
 import WebSpace from './WebSpace';
 import { useData } from '../../context/DataContext';
 import { HashLink } from 'react-router-hash-link';
+import { SaraAILink } from '../../../common/links';
 
 function NeedsSpark() {
   const { user } = useUserAuth();
@@ -25,27 +26,30 @@ function NeedsSpark() {
   return (
     <div>
       <Header />
-      <section id="custom-back" class="flex min-h-[60vh] md:min-h-fit py-24 md:py-0 flex-col bg-contain items-center justify-center bg-[url(https://dashboard.algolia.com/client-assets/c1c9361fe75370d1b156733e962f7214/514f2ec3798090c6df00dad1592c8166.svg)]">
-        <div  data-aos="zoom-in-up"
-          data-aos-duration="3000" class="flex max-w-5xl flex-col px-6 items-center text-center lg:pb-48 lg:pt-32">
-          <h1 class="mb-8 text-4xl font-semibold text-sky-500 sm:text-5xl md:mb-6 md:text-6xl">Why Webweave?</h1>
-          <h2 class="mb-8 text-xl font-medium text-sky-500 ">Webweave centralizes coding and web development, offering seamless integration of features, AI-powered assistance, collaboration, and real-time tools—all in one dashboard, ensuring efficiency, convenience, and an enhanced learning experience.</h2>
-          <a href="#top-features">
-            <button className="group/button relative inline-flex items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#2193b0] via-[#6dd5ed] to-[#093676] backdrop-blur-lg px-6 py-3 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:scale-[1.03] border border-white">
-              <span className="text-lg">Explore Top Features</span>
-              <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-13deg)_translateX(-100%)] group-hover/button:duration-1000 group-hover/button:[transform:skew(-13deg)_translateX(100%)]">
-                <div className="relative w-10 h-full bg-white"></div>
-              </div>
-            </button>
-          </a>
+      <section id="custom-back" className="relative overflow-hidden bg-weave-soft px-5 pb-20 pt-36 md:pb-28 md:pt-44">
+        <div className="ww-blob -left-24 top-16 h-80 w-80 bg-brand-400 opacity-30" />
+        <div className="ww-blob -right-20 top-40 h-80 w-80 bg-weave-cyan opacity-30" />
+        <div data-aos="fade-up" className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
+          <span className="eyebrow">Why WebWeave</span>
+          <h1 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+            One dashboard. <span className="text-weave">Every tool you need.</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-600">
+            WebWeave brings coding and web development together — AI-powered assistance,
+            real-time previews, notes and collaboration in a single space, so you can focus on learning.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <HashLink to="#Sara" className="btn-weave">Meet Sara AI</HashLink>
+            <HashLink to="#sharedspace" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 font-semibold text-brand-700 transition hover:-translate-y-0.5">Collaboration</HashLink>
+          </div>
         </div>
       </section>
       {/* <section id="top-features" class="text-white bg-black body-font">
         <div class="container px-5 md:px-12 py-24 mx-auto">
           <div className="flex items-center justify-between w-full mb-12">
             <div class="flex flex-col">
-              <h1 class="sm:text-3xl text-2xl font-medium title-font text-white">Explore the Full Potential of Webweave</h1>
-              <p class="leading-relaxed text-base text-gray-200">Discover the Top Features That Make Webweave Unstoppable!</p>
+              <h1 class="sm:text-3xl text-2xl font-medium title-font text-white">Explore the Full Potential of WebWeave</h1>
+              <p class="leading-relaxed text-base text-gray-200">Discover the Top Features That Make WebWeave Unstoppable!</p>
             </div>
             <h1 className="hidden px-5 py-2 text-sm font-medium tracking-widest text-white uppercase border-2 border-white border-dashed rounded-md md:block">TOP FEATURES</h1>
           </div>
@@ -362,33 +366,43 @@ public class Palindrome {
           </div>
         </div>
       </section> */}
-      {/* <section id="Sara" className="body-font">
-        <div class="container mx-auto flex lg:px-20 px-5 gap-12 py-12 md:gap-0 md:flex-row flex-col-reverse items-center">
-          <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 class="title-font text-3xl capitalize mb-4 font-semibold text-black">Try Seamless Assistance with Sara AI!</h1>
-            <ul class="mb-8 text-black/60 md:ms-10 text-start leading-relaxed list-disc w-[80%]">
-              <li className="mb-2 text-justify">Sara AI is an advanced AI model integrated into both Code Space and Web Space, offering real-time assistance to learners. It acts as a virtual tutor, answering queries, clarifying doubts, and providing detailed explanations for coding errors in both programming and web development.</li>
-              <li className="mb-2 text-justify">In Code Space, Sara AI provides tailored solutions for programming challenges, while in Web Space, it helps with web development techniques and framework-related queries. It also integrates with Space Notes, allowing users to save answers for later reference.</li>
-              <li className="mb-2 text-justify">By fostering an interactive, supportive learning environment, Sara AI empowers learners to confidently master programming and web development.</li>
+      <section id="Sara" className="scroll-mt-24 bg-weave-soft px-5 py-20 md:px-8 md:py-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2">
+          <div data-aos="fade-up">
+            <span className="eyebrow">Sara AI</span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Seamless assistance with <span className="text-weave">Sara AI</span>
+            </h2>
+            <ul className="mt-6 space-y-3 text-gray-600">
+              <li className="rounded-2xl glass p-4">A virtual tutor built into CodeSpace and WebSpace — answering questions, clarifying doubts and explaining errors in real time.</li>
+              <li className="rounded-2xl glass p-4">Tailored help for programming challenges, web techniques and framework questions. Save any answer straight to Space Notes.</li>
+              <li className="rounded-2xl glass p-4">An interactive, supportive way to master programming and web development with confidence.</li>
             </ul>
-            <div className="w-[80%] grid grid-cols-2 gap-5">
-              <Link to='https://aiSara.vercel.app' class="flex justify-center items-center bg-main ps-5 pe-5 py-3 rounded-md gap-2">
-                <span class="text-white">OG Sara AI</span>
-              </Link>
-              <h1 class="flex justify-center items-center bg-white ps-5 pe-3 py-3 rounded-md gap-2">
-                <span class="text-black">Try Now</span>
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1 text-black" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </h1>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href={SaraAILink} target="_blank" rel="noopener noreferrer" className="btn-weave">Open Sara AI</a>
+              <Link to={user ? "/dashboard/space/new" : "/auth"} className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 font-semibold text-brand-700 transition hover:-translate-y-0.5">Use it in a Space</Link>
             </div>
           </div>
-          <div class="lg:max-w-xl lg:w-full h-[70vh] md:h-[80vh] shadow border border-black rounded-md md:w-1/2 w-full">
-            <Chat />
+          <div data-aos="fade-up" data-aos-delay="150" className="relative">
+            <div className="ww-blob left-10 top-10 h-64 w-64 bg-brand-400 opacity-30" />
+            <div className="relative rounded-3xl bg-weave p-6 text-white shadow-glow">
+              <div className="flex items-center gap-3">
+                <img src="https://ik.imagekit.io/vituepzjm/Sara.png" alt="Sara AI" className="size-11 rounded-full bg-white/80 p-1" />
+                <div>
+                  <div className="font-semibold">Sara AI</div>
+                  <div className="text-xs text-white/70">Integrated in every Space</div>
+                </div>
+              </div>
+              <div className="mt-6 space-y-3 text-sm">
+                <div className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-white/90 px-4 py-2 text-gray-800">Explain this TypeError: cannot read properties of undefined</div>
+                <div className="w-fit max-w-[90%] rounded-2xl rounded-bl-md glass-dark px-4 py-2">The object is undefined when you access it. Check that your data has loaded first, or use optional chaining: <code className="rounded bg-black/30 px-1">user?.name</code></div>
+                <div className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-white/90 px-4 py-2 text-gray-800">Save that to my notes 📝</div>
+              </div>
+            </div>
           </div>
         </div>
-      </section> */}
-      <section id="spacenotes" class="body-font bg-gradient-to-br from-[#2193b0] via-[#6dd5ed] to-[#093676]">
+      </section>
+      <section id="spacenotes" class="body-font bg-gradient-to-br from-[#4f1fd6] via-[#7047fb] to-[#1e1458]">
         <div class="container mx-auto flex lg:pe-24 lg:ps-0 px-5 pt-24 pb-12 md:py-24 md:flex-row flex-col items-center " >
           <div  data-aos="fade-right"
           data-aos-duration="3000" class="lg:max-w-4xl lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
@@ -398,7 +412,7 @@ public class Palindrome {
           data-aos-duration="3000" class="lg:flex-grow md:w-1/2 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
             <h1 class="title-font text-3xl capitalize mb-2 font-semibold text-white">Capture Insights with Space Notes!</h1>
             <p className="mb-5 text-white text-justify leading-relaxed list-disc w-[90%]">Space Notes, integrated into Code & Web Space, lets users take detailed, AI-assisted notes during development. Real-time syncing, easy organization, and search help consolidate learning, track progress, and improve knowledge retention without workflow disruption.</p>
-            <ul className="grid w-full h-full grid-cols-2 p-5 mb-5 text-left list-disc list-inside bg-white border rounded-md text-sky-500 border-sky-500 outline outline-4 outline-sky-400">
+            <ul className="grid w-full h-full grid-cols-2 p-5 mb-5 text-left list-disc list-inside bg-white border rounded-md text-brand-500 border-brand-500 outline outline-4 outline-brand-400">
               <li>Title</li>
               <li>Delimiter</li>
               <li>CheckList</li>
@@ -410,7 +424,7 @@ public class Palindrome {
               <li>Math</li>
             </ul>
             <Link to='/dashboard/webspace/new' class="flex md:hidden justify-center items-center bg-white ps-5 pe-3 py-3 rounded-md gap-2">
-              <span class="text-sky-500">Try Now</span>
+              <span class="text-brand-500">Try Now</span>
               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1 text-white" viewBox="0 0 24 24">
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
               </svg>
@@ -418,7 +432,7 @@ public class Palindrome {
             <Dialog.Root open={isEditorOpen} onOpenChange={setIsEditorOpen} >
               <Dialog.Trigger asChild>
                 <button class="md:flex hidden justify-center items-center bg-white ps-5 pe-3 py-3 rounded-md gap-2">
-                  <span class="text-sky-500">Try Now</span>
+                  <span class="text-brand-500">Try Now</span>
                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1 text-white" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
@@ -440,10 +454,10 @@ public class Palindrome {
             <img class="object-cover h-[60vh] md:h-[80vh] object-right rounded" alt="hero" src="https://ik.imagekit.io/vituepzjm/trash.png?updatedAt=1735156736090" />
           </div>
           <div class="md:px-8 flex pe-3 md:pe-0 col-span-3 md:col-span-2 md:text-center flex-col items-start md:items-center justify-start mt-12 md:mt-0 md:justify-center">
-            <h1 className="px-8 py-3 mb-5 text-sm font-bold text-white bg-gradient-to-br from-[#6dd5ed] to-[#093676] rounded-full">SPACE TRASH </h1>
-            <h1 class="title-font text-3xl capitalize mb-2 font-semibold text-sky-600">Safe deletion and recovery with Space Trash!</h1>
-            <p className="mb-8 text-sky-400 text-justify line-clamp-5 md:line-clamp-none leading-relaxed list-disc w-[90%]">The Trash feature in Code Space and Web Space provides a safety net by allowing easy deletion and retrieval of code or web spaces. Deleted items are temporarily moved to the Trash, where they can be reviewed before permanent removal.This feature is particularly useful for learners and developers who may want to revisit or restore previous versions of their work. Items in the Trash can be restored to their original location, offering flexibility and peace of mind.The Trash also helps keep workspaces organized by clearing unnecessary content without the risk of irreversible deletion, promoting a more efficient and worry-free learning experience.</p>
-            <Link to='/dashboard/trash/codespace' class="flex justify-center items-center bg-gradient-to-br from-[#6dd5ed] to-[#093676] ps-5 pe-3 py-3 rounded-md gap-2">
+            <h1 className="px-8 py-3 mb-5 text-sm font-bold text-white bg-gradient-to-br from-[#7047fb] to-[#1e1458] rounded-full">SPACE TRASH </h1>
+            <h1 class="title-font text-3xl capitalize mb-2 font-semibold text-brand-600">Safe deletion and recovery with Space Trash!</h1>
+            <p className="mb-8 text-brand-400 text-justify line-clamp-5 md:line-clamp-none leading-relaxed list-disc w-[90%]">The Trash feature in Code Space and Web Space provides a safety net by allowing easy deletion and retrieval of code or web spaces. Deleted items are temporarily moved to the Trash, where they can be reviewed before permanent removal.This feature is particularly useful for learners and developers who may want to revisit or restore previous versions of their work. Items in the Trash can be restored to their original location, offering flexibility and peace of mind.The Trash also helps keep workspaces organized by clearing unnecessary content without the risk of irreversible deletion, promoting a more efficient and worry-free learning experience.</p>
+            <Link to='/dashboard/trash/codespace' class="flex justify-center items-center bg-gradient-to-br from-[#7047fb] to-[#1e1458] ps-5 pe-3 py-3 rounded-md gap-2">
               <span class="text-white">See Yours</span>
               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1 text-white" viewBox="0 0 24 24">
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -464,8 +478,8 @@ public class Palindrome {
               <img className='h-auto sm:h-96' src="https://ik.imagekit.io/vituepzjm/Scribby/front_main_hero_together.webp?updatedAt=1725384601380" alt="under maintenance image" />
               <div class="w-fit flex-col justify-center items-center gap-6 flex">
                 <div  data-aos="fade-left" data-aos-duration="3000" class="w-fit flex-col justify-start items-center gap-2.5 flex">
-                  <h2 class="sm:text-center text-sky-600 text-3xl font-bold leading-normal">Share and collaborate</h2>
-                  <p class="text-justify max-w-2xl mb-6 md:mb-12 text-sky-500 text-lg font-medium leading-relaxed">The collaboration feature in Code Space and Web Space allows users to share their code or web space for real-time teamwork. Collaborators can be assigned roles: Viewer, who can only view, and Editor, who can modify and contribute.The sender can switch these roles at any time, offering flexibility in managing the collaboration. This setup fosters a cooperative learning environment, promoting idea exchange and collective problem-solving.With shared editing, code reviews, and instant updates, the collaboration feature strengthens teamwork, improving learning outcomes and the final product</p>
+                  <h2 class="sm:text-center text-brand-600 text-3xl font-bold leading-normal">Share and collaborate</h2>
+                  <p class="text-justify max-w-2xl mb-6 md:mb-12 text-brand-500 text-lg font-medium leading-relaxed">The collaboration feature in Code Space and Web Space allows users to share their code or web space for real-time teamwork. Collaborators can be assigned roles: Viewer, who can only view, and Editor, who can modify and contribute.The sender can switch these roles at any time, offering flexibility in managing the collaboration. This setup fosters a cooperative learning environment, promoting idea exchange and collective problem-solving.With shared editing, code reviews, and instant updates, the collaboration feature strengthens teamwork, improving learning outcomes and the final product</p>
                   <div className="flex items-center gap-6 md:hidden ">
                     <h1 className="px-8 py-3 text-sm font-bold text-black uppercase bg-gray-200 rounded-full">Editor Mode</h1>
                     <h1 className="px-8 py-3 text-sm font-bold text-black uppercase bg-gray-200 rounded-full">Viewer Mode</h1>
@@ -475,42 +489,42 @@ public class Palindrome {
             </div>
           </div>
         </div>
-        <div className="hidden w-full gap-5 px-12 pb-24 md:flex bg-gradient-to-br from-[#2193b0] via-[#6dd5ed] to-[#093676]">
+        <div className="hidden w-full gap-5 px-12 pb-24 md:flex bg-gradient-to-br from-[#4f1fd6] via-[#7047fb] to-[#1e1458]">
           <div  data-aos="flip-up"
-          data-aos-duration="3000" className="w-1/2 relative rounded-lg group px-6 py-10 flex flex-col items-center justify-center bg-white border-[3.5px] border-dashed border-sky-400">
-            <div className="flex flex-col items-center justify-center gap-3 text-justify transition-all text-sky-500">
+          data-aos-duration="3000" className="w-1/2 relative rounded-lg group px-6 py-10 flex flex-col items-center justify-center bg-white border-[3.5px] border-dashed border-brand-400">
+            <div className="flex flex-col items-center justify-center gap-3 text-justify transition-all text-brand-500">
               <p className="master-mind w-[90%] text-xl">In Viewer mode, collaborators can access and view the shared code or web space but cannot make any edits. This role ensures secure content sharing without altering the original work.</p>
             </div>
-            <Link to="/dashboard/shared/list" className="absolute px-8 py-3 mb-5 text-sm font-bold text-white uppercase bg-gradient-to-br from-[#6dd5ed] to-[#093676] rounded-full -top-6 left-5">Editor Mode</Link>
+            <Link to="/dashboard/shared/list" className="absolute px-8 py-3 mb-5 text-sm font-bold text-white uppercase bg-gradient-to-br from-[#7047fb] to-[#1e1458] rounded-full -top-6 left-5">Editor Mode</Link>
           </div>
           <div  data-aos="fade-down"
-          data-aos-duration="3000" className="w-1/2 relative rounded-lg group px-6 py-10 flex flex-col items-center justify-center bg-white border-[3.5px] border-dashed border-sky-400">
-            <div className="flex flex-col items-center justify-center gap-3 text-justify transition-all text-sky-500">
+          data-aos-duration="3000" className="w-1/2 relative rounded-lg group px-6 py-10 flex flex-col items-center justify-center bg-white border-[3.5px] border-dashed border-brand-400">
+            <div className="flex flex-col items-center justify-center gap-3 text-justify transition-all text-brand-500">
               <p className="master-mind w-[90%] text-xl">In Editor mode, collaborators have full access to modify and contribute to the shared code or web space. This role enables real-time collaboration, fostering teamwork and active participation in projects.</p>
             </div>
-            <Link to="/dashboard/shared/list" className="absolute px-8 py-3 mb-5 text-sm font-bold text-white uppercase bg-gradient-to-br from-[#6dd5ed] to-[#093676]  rounded-full -top-6 left-5">Viewer Mode</Link>
+            <Link to="/dashboard/shared/list" className="absolute px-8 py-3 mb-5 text-sm font-bold text-white uppercase bg-gradient-to-br from-[#7047fb] to-[#1e1458]  rounded-full -top-6 left-5">Viewer Mode</Link>
           </div>
         </div>
       </section>
-      <section class="text-sky-600 bg-white">
+      <section class="text-brand-600 bg-white">
         <div  data-aos="zoom-in-down"
           data-aos-duration="3000"  class="container px-5 py-24 mx-auto">
                   <div class="flex flex-col text-center items-center justify-center w-full mb-12">
-                    <h1 className="px-8 py-3 mb-5 text-sm font-bold bg-white rounded-full text-sky-600">
+                    <h1 className="px-8 py-3 mb-5 text-sm font-bold bg-white rounded-full text-brand-600">
                       Join With Us{" "}
                     </h1>
-                    <h1 class="sm:text-4xl text-2xl lg:font-semibold font-bold title-font mb-4 text-transparent bg-gradient-to-br from-[#093676] via-[#03cefb] to-[#093676] bg-clip-text break-words">
-                      Try it now for an efficient and Collabrative experience!
+                    <h1 class="sm:text-4xl text-2xl lg:font-semibold font-bold title-font mb-4 text-transparent bg-gradient-to-br from-[#1e1458] via-[#22d3ee] to-[#1e1458] bg-clip-text break-words">
+                      Try it now for an efficient, collaborative experience!
                     </h1>
                     <p class="lg:w-2/3 mx-auto leading-relaxed lg:text-xl">
-                      Unlock The future of Learning is seamless and connected.
+                      The future of learning is seamless and connected.
                     </p>
                     {user ? (
                       <Link
                         to="/dashboard/home"
                         class="flex mt-10 justify-center  items-center bg-white ps-5 pe-3 py-3 rounded-md "
                       >
-                        <span class="text-sky-600 font-semibold">Explore More</span>
+                        <span class="text-brand-600 font-semibold">Explore More</span>
                         <svg
                           fill="none"
                           stroke="currentColor"
@@ -528,14 +542,14 @@ public class Palindrome {
                         to="/auth"
                         class="flex mt-10 justify-center  items-center bg-white ps-5 pe-3 py-3 rounded-md "
                       >
-                        <span class="text-sky-600 font-semibold">Get Started Now</span>
+                        <span class="text-brand-600 font-semibold">Get Started Now</span>
                         <svg
                           fill="none"
                           stroke="currentColor"
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          class="w-4 h-4 ml-1 text-sky-600"
+                          class="w-4 h-4 ml-1 text-brand-600"
                           viewBox="0 0 24 24"
                         >
                           <path d="M5 12h14M12 5l7 7-7 7"></path>

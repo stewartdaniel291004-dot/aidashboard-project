@@ -12,6 +12,63 @@
   scroll-behavior: smooth;
 }
 
+/* ---------- WebWeave design system ---------- */
+:root {
+  --ww-ink: #0d0b26;
+  --ww-brand: #5f2bf0;
+  --ww-cyan: #22d3ee;
+}
+
+body {
+  background: #f8f7ff;
+  color: var(--ww-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(112, 71, 251, 0.25);
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/60 backdrop-blur-xl border border-white/60 shadow-glass;
+  }
+  .glass-dark {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20 shadow-glass;
+  }
+  .text-weave {
+    @apply text-transparent bg-clip-text bg-weave;
+  }
+  .btn-weave {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-weave px-6 py-3 font-semibold text-white shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:scale-95;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20 active:scale-95;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-brand-700 backdrop-blur;
+  }
+  .ww-input {
+    @apply w-full rounded-xl border border-brand-100 bg-white/70 px-4 py-2.5 text-base text-gray-800 outline-none backdrop-blur transition focus:border-brand-400 focus:ring-4 focus:ring-brand-100;
+  }
+}
+
+.ww-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .master-mind {
   font-family: "Afacad Flux", serif;
 }

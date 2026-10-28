@@ -64,10 +64,10 @@ const WebSpacesList = () => {
                             className="object-cover w-8"
                         />
                         <div className="ml-3">
-                            <h2 className="text-[0.9rem]leading-relaxed line-clamp-1 font-semibold text-sky-700 group-hover:text-sky-900">
+                            <h2 className="text-[0.9rem]leading-relaxed line-clamp-1 font-semibold text-brand-700 group-hover:text-brand-900">
                                 {space.heading.slice(0, 30)}
                             </h2>
-                            <p className="text-xs leading-relaxed text-sky-500 line-clamp-1">{space.spaceid}</p>
+                            <p className="text-xs leading-relaxed text-brand-500 line-clamp-1">{space.spaceid}</p>
                         </div>
                     </Link>
 
@@ -86,12 +86,12 @@ const WebSpacesList = () => {
                                 <AlertDialog.Title className="m-0 text-xl font-semibold text-red-600">
                                     Are you absolutely sure?
                                 </AlertDialog.Title>
-                                <AlertDialog.Description className="text-sky-600 mt-3 mb-5 text-[15px] leading-normal">
+                                <AlertDialog.Description className="text-brand-600 mt-3 mb-5 text-[15px] leading-normal">
                                     This action cannot be undone. This will move{" "}
-                                    <span className="font-semibold capitalize text-sky-700">
+                                    <span className="font-semibold capitalize text-brand-700">
                                         {space.type} WebSpace
                                     </span>{" "}
-                                    on <span className="font-semibold text-sky-700">{space.heading}</span> to the Trash
+                                    on <span className="font-semibold text-brand-700">{space.heading}</span> to the Trash
                                     page. You can restore it anytime.
                                 </AlertDialog.Description>
                                 <div className="flex justify-start gap-[25px]">
@@ -113,7 +113,7 @@ const WebSpacesList = () => {
                         </AlertDialog.Portal>
                     </AlertDialog.Root>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-sky-600 line-clamp-2">
+                <p className="mt-2 text-sm leading-relaxed text-brand-600 line-clamp-2">
                     {space.explanation || "No description available for this space."}
                 </p>
             </div>
@@ -121,7 +121,7 @@ const WebSpacesList = () => {
     );
 
     return (
-        <div className="w-full min-h-screen px-6 py-6 bg-gradient-to-br from-[#2193b0] to-[#6dd5ed]">
+        <div className="w-full min-h-screen px-6 py-6 bg-gradient-to-br from-[#4f1fd6] to-[#7047fb]">
             <div className="flex items-center justify-between w-full mb-10">
                 <h1 className="hidden text-2xl font-semibold text-white md:block ms-3 me-10">
                     Your&nbsp;WebSpaces
@@ -130,12 +130,12 @@ const WebSpacesList = () => {
                     <input
                         type="search"
                         onChange={(e) => setWebSearchPrompt(e.target.value)}
-                        className="bg-gray-50 border border-gray-300 text-sky-200 text-sm rounded-lg focus:ring-white focus:border-white block w-full pl-3 p-2.5"
+                        className="bg-gray-50 border border-gray-300 text-brand-200 text-sm rounded-lg focus:ring-white focus:border-white block w-full pl-3 p-2.5"
                         placeholder="Search for your WebSpaces.."
                     />
                     <Popover.Root>
                         <Popover.Trigger asChild>
-                            <button className="p-2.5 relative ml-2 text-sm font-medium text-sky-500 bg-white rounded-lg border border-white transition-all active:scale-95">
+                            <button className="p-2.5 relative ml-2 text-sm font-medium text-brand-500 bg-white rounded-lg border border-white transition-all active:scale-95">
                                 <FaFilter className="text-[1rem] mt-1" />
                                 {webpromptLang !== "" && <div className="absolute bg-green-400 rounded -top-1 -right-1 size-3"></div>}
                             </button>
@@ -198,7 +198,7 @@ const WebSpacesList = () => {
                         Create a new WebSpace to organize your projects and collaborate efficiently.
                     </p>
                     <button onClick={() => setNewOpen(true)}
-                        className="px-5 py-2 mt-6 transition bg-white rounded-lg shadow text-sky-600 hover:bg-white/80"
+                        className="px-5 py-2 mt-6 transition bg-white rounded-lg shadow text-brand-600 hover:bg-white/80"
                     >
                         Create a WebSpace
                     </button>
