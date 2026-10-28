@@ -1,2 +1,0 @@
-# aidashboard-project
-AIdashboard Project
